@@ -2,7 +2,7 @@ const {MongoClient, ObjectID} = require('mongodb');
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) =>{
     if(err){
-        return console.log("We were unbale to connect to the Monogodb database sever");
+        return console.log("We were unable to connect to the Monogodb database sever");
     }
     console.log("Connected to MongoDB server");
 
@@ -18,5 +18,5 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) =>{
         console.log(result);
     })
 
-    //db.close();
+    //db.close();   //closing db here would interact with other statements above.
 });
