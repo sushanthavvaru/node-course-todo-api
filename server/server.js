@@ -1,3 +1,5 @@
+require('./config/config');
+
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,12 +10,9 @@ var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 
 var app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.use(bodyParser.json());
-app.get('/', (req, res) => {
-      res.send("<p>Welcome to Sushanth's Todo API Page. Contact <b>+1(619)-724-1262</b> to know how this works in detail or Email me at <b>sushantha.a@gmail.com</b></p>");
-    });
 
 app.post('/todos', (req, res) => {
   var todo = new Todo({
