@@ -1,5 +1,6 @@
 require('./config/config');
 
+const os = require('os');
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,7 +9,20 @@ const {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {View} = require('./models/view');
+
+
 var {authenticate} = require('./middleware/authenticate');
+var person = os.userInfo();
+
+var view = new View({
+    person: person.username,
+    time: new Date().toString()
+});
+view.save().then((doc) =>{
+}).catch( (e) =>{
+  console.log("Could not save user", e);
+})
 
 var app = express();
 const port = process.env.PORT;
