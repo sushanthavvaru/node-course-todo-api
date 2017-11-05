@@ -29,9 +29,7 @@ app.get('/', (req, res) =>{
         time: new Date().toString()
     });
     view.save().then((doc) =>{
-      console.log(doc);
-        res.send(person);
-      //res.send("<p> Hi User " + doc.person + "Welcome to Sushanth's Todo API Page. Contact <b>6197241262</b> or email <b>\"sushantha.a@gmail.com\"</b> for more details  </p>");
+      res.send("<p> Hi User. Welcome to Sushanth's Todo API Page. Contact <b>6197241262</b> or email <b>\"sushantha.a@gmail.com\"</b> for more details  </p>");
     }).catch( (e) =>{
         console.log("Could not save user", e);
     });
