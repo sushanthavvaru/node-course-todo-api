@@ -15,25 +15,28 @@ var {View} = require('./models/view');
 var {authenticate} = require('./middleware/authenticate');
 var person = os.userInfo();
 
-
-
 var app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) =>{
+app.use((req, res, next)=> {
   console.log(person);
-    var view = new View({
-        person: person.username,
-        time: new Date().toString()
-    });
-    view.save().then((doc) =>{
-      res.send("<p> Hi User. Welcome to Sushanth's Todo API Page. Contact <b>6197241262</b> or email <b>\"sushantha.a@gmail.com\"</b> for more details  </p>");
-    }).catch( (e) =>{
-        console.log("Could not save user", e);
-    });
+  var view = new View({
+      person: person.username,
+      time: new Date().toString()
+  });
+  view.save().then((doc) =>{
 
+  }).catch( (e) =>{
+      console.log("Could not save user", e);
+  });
+  next();
+});
+
+app.get('/', (req, res) =>{
+
+    res.send("<p> Hi User. Welcome to Sushanth's Todo API Page. Contact <b>6197241262</b> or email <b>\"sushantha.a@gmail.com\"</b> for more details  </p>");
 })
 
 app.post('/todos', authenticate, (req, res) => {
